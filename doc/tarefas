@@ -1,0 +1,19 @@
+- Quantas threads iremos utilizar?
+    - quatro para calcular os pares na linha
+        - cada uma calcula os pares do seu elemento pra frente
+        - ao calcular todos os pares pula pro elemento corrente + 4
+    - uma para inserir na lista de pares ordenados
+    - uma imprime os N pares de compras mais vendidos
+
+- Temos que guardar uma estrutura com os pares das K compras que estão sendo analisadas?
+    - utilizamos essa estrutura para inserir ordenado
+
+- Como iremos "carregar/mapear" o arquivo em memória?
+
+- Qual a quantidade de compras cada thread irá tratar?
+
+- Como iremos armazenar as compras ordenadas?
+
+- Inserção ordenada?
+
+- Sincronização das threads
