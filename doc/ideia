@@ -1,0 +1,30 @@
+ -----    ------
+| 1,2 |--|random|
+ -----    ------
+   |
+ -----    -
+| 5,7 |--|3|
+ -----    -
+   |
+ -----    -
+| 2,3 |--|4|
+ -----    -
+
+-> "Lista" indexada pelos pares e indexada pelos contadores dos pares
+
+---
+
+-> Contador para a próxima linha a ser tratada ---> MUTEX
+-> Uma thread lê uma linha ( indicada pelo contador ), incrementa o contador, processa a linha, busca e incrementa os pares na lista
+-> Ao terminar a linha, pega a próxima indicada pelo contador.
+-> Alguém cuida para ver se o número de compras não foi analisado
+
+-> Copiar esta lista para outra região da memória, para analisar os pares mais comprados.
+-> Enquanto esta "cópia" é analisada as outras threads já podem processar mais um bloco de compras.
+-> A thread que verifica os mais comprados imprime as estatísticas.
+
+-> Quando uma thread pegar a linha que é o número de compras do bloco, não permite que as outras peguem uma nova linha
+   Quando ela terminar, incrementa o contador, chama a thread que "copia" a lista
+   -> Após a cópia essa thread libera o próximo bloco e trata a lista copiada.
+
+-> Assim até a útlima compra.
