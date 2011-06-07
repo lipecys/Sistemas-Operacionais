@@ -1,0 +1,23 @@
+Segue uma implementação bastante simples (apenas 171 
+linhas [1]) de um programa que resolve o problema 
+do supermercado Ganateli.
+
+Exemplo de execução:
+
+time cat in.dat | ./mercado_judy  >saida
+
+real	1m30.993s
+user	1m28.443s
+sys	0m2.052s
+
+Note que foram 100 mil compras em menos de 1m30. Note também
+que foi utilizada a Libjudy para resolver o problema. Mas você
+não vai poder usar a mesma abordagem, já que quem deve criar uma
+estrutura de dados que permita concorrência é você.
+
+De brinde você ganha um gerador de entradas, por exemplo:
+
+./gera_entrada 5 10 100000 > in.dat 
+
+
+[1] Ver código penal, artigo 171
