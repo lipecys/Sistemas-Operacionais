@@ -9,6 +9,9 @@ unsigned int iter = 0;
 // Mutex para o contador de linhas
 pthread_mutex_t mutex_lines;
 
+// Mutex para o contador de iterações
+pthread_mutex_t mutex1;
+
 // Estrutura que irá armazenar os dados
 nossaEstrutura st;
 
@@ -35,18 +38,20 @@ int processLine ( nossaEstrutura *st )
 }
 
 // Responsável por mostrar a saída do programa
-void printResult ( nossaEstrutura *st )
+void *printResult ( void *args )
 {
     /*
      * Responsável pela saída do programa
      */
      
+    pthread_mutex_lock (&mutex1);
     if ( n == 0  )
         // Do this
         puts ("N == 0");
     else if ( (iter % k) == 0 )
         // Or this
         puts ("Imprimir algo");
+    pthread_mutex_unlock (&mutex1);
         
     puts ("Saída");
 }
@@ -87,9 +92,12 @@ int main ( int argc, char **argv )
     pthread_t tid;
     pthread_mutex_init (&mutex_lines, NULL);
     
-    for ( i = 0; i < MAX_THREADS ; i++ )
+    for ( i = 0; i < MAX_THREADS - 1 ; i++ )
         pthread_create ( &tid, TH_ATTR, execute, NULL );
+
+    pthread_create ( &tid, TH_ATTR, printResult, st );
         
+    pthread_mutex_destroy (&mutex1);
     pthread_mutex_destroy (&mutex_lines);
     return 0;
 }
