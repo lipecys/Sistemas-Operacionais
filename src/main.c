@@ -76,9 +76,6 @@ void *execute ( void *args )
     // Processa a linha
     processLine (st1);
     
-    // Imprime resultado se for a hora
-    printResult (st1);
-    
     pthread_exit (NULL);
 }
 
@@ -95,7 +92,7 @@ int main ( int argc, char **argv )
     for ( i = 0; i < MAX_THREADS - 1 ; i++ )
         pthread_create ( &tid, TH_ATTR, execute, NULL );
 
-    pthread_create ( &tid, TH_ATTR, printResult, st );
+    pthread_create ( &tid, TH_ATTR, printResult, (void*) st );
         
     pthread_mutex_destroy (&mutex1);
     pthread_mutex_destroy (&mutex_lines);
