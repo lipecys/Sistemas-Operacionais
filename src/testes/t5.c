@@ -8,9 +8,9 @@
 
 int main ( int argc, char **argv )
 {
-    int input, output;
+    int input;
     size_t filesize;
-    char *source, *target;
+    char *source;
 
     if ( ( input = open ("ex_entrada", O_RDONLY) ) == -1 )
         fprintf ( stderr, "%s: Error: opening file: %s\n", PACKAGE, argv[1] ), exit (1);
@@ -35,7 +35,7 @@ int main ( int argc, char **argv )
         }
         else
         {
-            y[j+1] = '\0';
+            y[j] = '\0';
             x = atoi (y);
             printf ("%d\n", x);
             j = 0;
